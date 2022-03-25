@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
 
- Argentina | Argentina | Holanda | Japón |	
+ Argentina | EEUU | Holanda | Japón |	
 ---------|---------|---------|---------|
 29.66  | 77.81 | 8.68  |  110.21  |
 7.61   | 35.50 | 7.31  |  32.14   |
@@ -25,10 +25,6 @@ knitr::opts_chunk$set(echo = TRUE)
 2.44   | 7.50  | 1.29  |  7.00    |
 
 ```{r }
-#argentina<- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44)
-#EEUU<- c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
-#holanda<- c(8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29)
-#japon<- c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
 poblacion<- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44,77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50,8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29,110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
 ```
 
@@ -36,12 +32,68 @@ a) Construya un box-plot e identifique los puntos extremos. ¿Cuáles son las ca
 ```{r }
 pais<-c("Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon")
 
-boxplot(poblacion~pais, horizontal = FALSE, main = "Diagrama de cajas y bigotes Argentina", 
-     xlab = "Poblacion (en cientos de miles)", ylab = "Argentina",col = "lightblue")
+boxplot(poblacion~pais, horizontal = FALSE, main = "Diagrama de cajas y bigotes paises", 
+     xlab = "Paises", ylab = "Poblacion (cientos-miles)",col = "lightblue")
 ```
+En Argentina la poblacion de cientos de miles es menor que 10 y holanda tiene una poblacion un poco menor a la de argentina, mientras que EEUU se lleva la mayor poblacion entre todo el resto de los paises aproximadamente tiene un poco menos de 40 y por ultimo el pais de japon tiene un poco mas de 30 de poblacion pero no tiene tanta como la de EEUU.
+
+Se puede apreciar que solo 3 paises presentan datos atipicos uno por cada pais, el pais de japon es el que tiene el dato atipico mas alejados de los bigotes a diferencia de los otros paises, y el que mas cerca tiene el dato atipico a sus bigotes es argentina.
+
+
+
 b) Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+
+Analizando el grafico de EEUU se puede apreciar que apartir del cuartil Q2 hasta el Q3 los datos se encuentran muy dispersos mas que el resto de paises, en el pais de japon los datos entre cuartil Q1-Q2 Y Q2-Q3 no son tan dispersos como el anterior y antes y despues de la mediana tienen la misma dispersion, y en los paises de argentina y holanda la dispersion es mucho menor que la de japon, los dos paises tienen poca dispersion despues de la mediana.
+
+Respecto a la simetria de cada uno de los paises, podemos apreciar que el unico pais que es simetrico ya que la mediana se sitúa en el centro de la caja, a diferencia de los paises como argentina EEUU y holanda son asimetricamente positivos ya que la parte más larga de la caja es la parte superior a la mediana.
+
+El pais mas homogeneamente habitado es japon ya que tiene la misma dispersion de datos antes de la mediana y despues de la mediana.
+
+Como se esta analizando los centros de cada poblacion dentro de ello no hay datos atipicos, los unicos datos atipicos que apreciamos son los que tienen argentina, EEUU, japon que estan por fuera de los limites.
 
 2. Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto que ha identificado que el 2% de las personas que reservaron puesto, no se presentan a la hora del embarque. Teniendo en cuenta que el avión A320 utilizado en esta ruta tiene una capacidad para 180 pasajeros, la empresa decide vender 181 tiquetes. ¿Cuál es la probabilidad de que todas las personas que llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distribución Poisson.
 
-3. En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la Coca Cola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME
+```{r }
+lambda <- 180 * 0.98
 
+#la porbabilidad de que todas las personas que llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante la aeronáutica civil es:
+probabilidad2 <- ppois(180,lambda);probabilidad2
+
+longitud2<-c(0:230)
+probabilidadPunto2<-dpois(longitud2,lambda)
+
+plot(longitud2,probabilidadPunto2, main="Distribucion poisson (lambda=1.76.4)",
+xlab="Numero personas con silla asegurada",
+ylab="Probabilidad",
+pch=16,
+col = "cornflowerblue")
+
+polygon(c(longitud2[longitud2 <= 180 ], 180),c(probabilidadPunto2[longitud2 <= 180 ], 0),
+        col = "slateblue1",
+        border = 1)
+```
+3. En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la Coca Cola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME 
+
+```{r }
+media<- 400
+desvE<- 5
+
+probabilidad3<- 1-( pnorm (415, media, desvE));probabilidad3
+
+#El porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME es
+respuesta<-(probabilidad3*100);respuesta
+
+longitud3<-c(0:450)
+probabilidadPunto3<-dnorm(0:450,media,desvE)
+
+plot(longitud3,probabilidadPunto3, main="Distribucion normal (media=400, desvE=5)",
+xlab="Porcentaje de botellas NO CONFORME",
+ylab="Probabilidad",
+pch=16,
+col = "cornflowerblue")
+
+polygon(c(longitud3[longitud3 >= 416 ], 416),c(probabilidadPunto3[longitud3 >= 416], 0),
+        col = "slateblue1",
+        border = 1)
+
+```
