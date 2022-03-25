@@ -1,0 +1,47 @@
+---
+title: "parcial 1"
+author: "Kevin Valencia Romero y Tatiana Mora Acosta"
+output: pdf_document
+date: '2022-03-24'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
+
+ Argentina | Argentina | Holanda | Japón |	
+---------|---------|---------|---------|
+29.66  | 77.81 | 8.68  |  110.21  |
+7.61   | 35.50 | 7.31  |  32.14   |
+6.35   | 24.79 | 6.02  |  18.88   |
+4.10   | 20.02 | 2.64  |  16.38   |
+3.80   | 16.70 | 1.75  |  13.37   |
+2.75   | 9.39  | 1.72  |  11.92   |
+2.70   | 9.38  | 1.51  |  10.71   |
+2.69   | 8.76  | 1.42  |  7.80    |
+2.51   | 7.63  | 1.31  |  7.70    |
+2.44   | 7.50  | 1.29  |  7.00    |
+
+```{r }
+#argentina<- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44)
+#EEUU<- c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
+#holanda<- c(8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29)
+#japon<- c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
+poblacion<- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44,77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50,8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29,110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
+```
+
+a) Construya un box-plot e identifique los puntos extremos. ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+```{r }
+pais<-c("Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","EEUU","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Holanda","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon","Japon")
+
+boxplot(poblacion~pais, horizontal = FALSE, main = "Diagrama de cajas y bigotes Argentina", 
+     xlab = "Poblacion (en cientos de miles)", ylab = "Argentina",col = "lightblue")
+```
+b) Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+
+2. Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto que ha identificado que el 2% de las personas que reservaron puesto, no se presentan a la hora del embarque. Teniendo en cuenta que el avión A320 utilizado en esta ruta tiene una capacidad para 180 pasajeros, la empresa decide vender 181 tiquetes. ¿Cuál es la probabilidad de que todas las personas que llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distribución Poisson.
+
+3. En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la Coca Cola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME
+
